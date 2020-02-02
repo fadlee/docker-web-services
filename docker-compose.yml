@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+  percona:
+    image: percona:5.7
+    restart: always
+    mem_limit: 4g
+    network_mode: host
+    volumes:
+     - ./mysql/data:/var/lib/mysql
+     - ./mysql/conf.d:/etc/mysql/conf.d
+     - ./mysql/log/slow-query.log:/var/log/slow-query.log
+    environment:
+     - MYSQL_ROOT_PASSWORD=password
+#  redis:
+#    image: redis:3-alpine
+#    restart: always
+#    mem_limit: 512mb
+#    network_mode: host
+#    volumes:
+#      - ./redis/data:/data
+##      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+##    command: redis-server /usr/local/etc/redis/redis.conf
+#  nginx:
+#    image: nginx:1-alpine
+#    mem_limit: 128mb
+#    network_mode: host
